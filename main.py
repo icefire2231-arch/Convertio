@@ -50,11 +50,17 @@ async def convert(req: ConvertRequest, request: Request):
     height_map = {"720p": 720, "1080p": 1080, "2k": 1440}
     max_height = height_map.get(req.quality, 1080)
 
-    ydl_opts = {
+      ydl_opts = {
         "outtmpl": out_tmpl,
         "quiet": True,
         "no_warnings": True,
+        "extractor_args": {
+            "youtube": {
+                "player_client": ["ios", "android", "mweb"]
+            }
+        },
     }
+
 
     if is_audio:
         ydl_opts.update({
