@@ -51,13 +51,13 @@ def convert(req: ConvertRequest):
     
     is_audio = req.format.lower() in ["mp3", "wav"]
     
-    # Contournement de la détection de bot YouTube
+       # Configuration multi-clients sans blocage de page
     extractor_args = {
         "youtube": {
-            "player_client": ["android"],
-            "player_skip": ["webpage", "configs"],
+            "player_client": ["android", "ios", "mweb"]
         }
     }
+
     
     ydl_opts = {
         "outtmpl": output_template,
